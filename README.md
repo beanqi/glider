@@ -1,5 +1,15 @@
 # [glider](https://github.com/nadoo/glider)
 
+> This project is forked from source code tree. The main prompt is to add subscription support(support multi url).
+> To use this feature, just add `subscription` to the config file.
+
+**For example**:
+```
+subscription=http://xxxxx.xx
+subscription=http://sub.xxx.cn
+```
+
+
 [![Go Version](https://img.shields.io/github/go-mod/go-version/nadoo/glider?style=flat-square)](https://go.dev/dl/)
 [![Go Report Card](https://goreportcard.com/badge/github.com/nadoo/glider?style=flat-square)](https://goreportcard.com/report/github.com/nadoo/glider)
 [![GitHub release](https://img.shields.io/github/v/release/nadoo/glider.svg?style=flat-square&include_prereleases)](https://github.com/nadoo/glider/releases)
