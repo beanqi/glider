@@ -24,6 +24,8 @@ type Config struct {
 
 	Listens []string
 
+	Subs []string
+
 	Forwards []string
 	Strategy rule.Strategy
 
@@ -51,6 +53,8 @@ func parseConfig() *Config {
 	flag.IntVar(&conf.TCPBufSize, "tcpbufsize", 32768, "tcp buffer size in Bytes")
 	flag.IntVar(&conf.UDPBufSize, "udpbufsize", 2048, "udp buffer size in Bytes")
 	flag.StringSliceUniqVar(&conf.Listens, "listen", nil, "listen url, see the URL section below")
+
+	flag.StringSliceVar(&conf.Subs, "subscription", nil, "subscription url, you can get it from the network vendor")
 
 	flag.StringSliceVar(&conf.Forwards, "forward", nil, "forward url, see the URL section below")
 	flag.StringVar(&conf.Strategy.Strategy, "strategy", "rr", `rr: Round Robin mode
@@ -128,6 +132,7 @@ check=disable: disable health check`)
 	}
 
 	loadRules(conf)
+	SetForwards(conf)
 	return conf
 }
 
