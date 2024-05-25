@@ -89,32 +89,32 @@ func decodeLine(line string) (string, error) {
 	}
 
 	// Add more cases here for other prefixes like "vmess://"
-	if strings.HasPrefix(line, "vmess://") {
-		vmess := strings.Split(line, "vmess://")[1]
-		decoded, err := base64.StdEncoding.DecodeString(vmess)
-		if err != nil {
-			return "", err
-		}
+	// if strings.HasPrefix(line, "vmess://") {
+	// 	vmess := strings.Split(line, "vmess://")[1]
+	// 	decoded, err := base64.StdEncoding.DecodeString(vmess)
+	// 	if err != nil {
+	// 		return "", err
+	// 	}
 
-		var info VmessInfo
-		err = json.Unmarshal(decoded, &info)
-		if err != nil {
-			return "", err
-		}
+	// 	var info VmessInfo
+	// 	err = json.Unmarshal(decoded, &info)
+	// 	if err != nil {
+	// 		return "", err
+	// 	}
 
-		// Generate the new vmess URL
-		newUrl := fmt.Sprintf("vmess://%s@%s:%s", info.Id, info.Add, info.Port)
-		if info.Net == "ws" {
-			newUrl = fmt.Sprintf("ws://%s:%s%s?host=%s,vmess://%s", info.Add, info.Port, info.Path, info.Host, info.Id)
-		}
-		if info.Tls != "" {
-			newUrl = fmt.Sprintf("tls://%s:%s,ws://,vmess://%s", info.Host, info.Port, info.Id)
-		}
+	// 	// Generate the new vmess URL
+	// 	newUrl := fmt.Sprintf("vmess://%s@%s:%s", info.Id, info.Add, info.Port)
+	// 	if info.Net == "ws" {
+	// 		newUrl = fmt.Sprintf("ws://%s:%s%s?host=%s,vmess://%s", info.Add, info.Port, info.Path, info.Host, info.Id)
+	// 	}
+	// 	if info.Tls != "" {
+	// 		newUrl = fmt.Sprintf("tls://%s:%s,ws://,vmess://%s", info.Host, info.Port, info.Id)
+	// 	}
 
-		return newUrl, nil
-	}
+	// 	return newUrl, nil
+	// }
 
 	// TODO: Add more cases here for other prefixes like "trojan://"
 
-	return line, nil
+	return "", nil
 }
