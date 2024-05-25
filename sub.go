@@ -66,7 +66,7 @@ func ParseSub(subUrl string) ([]string, error) {
 
 	for _, line := range lines {
 		decodedLine, err := decodeLine(line)
-		if err != nil || line == "" {
+		if err != nil || decodedLine == "" {
 			continue
 		}
 		result = append(result, decodedLine)
